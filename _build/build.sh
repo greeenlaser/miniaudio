@@ -56,6 +56,10 @@ mf --o --f "${LICENSE_ORIGIN}" --t "${LICENSE_TARGET}"
 # Source files
 
 mf --f "${SRC_ORIGIN}/miniaudio.c" --t "${SRC_TARGET}/miniaudio.c"
+cat > src/miniaudio_impl.c <<'EOF'
+#define MINIAUDIO_IMPLEMENTATION
+#include "miniaudio.h"
+EOF
 
 # Headers
 
@@ -65,7 +69,8 @@ mf --f "${INCLUDE_ORIGIN}/miniaudio.h" --t "${INCLUDE_TARGET}/miniaudio.h"
 # Compile
 #
 
-kalamake ${BUILD_RELEASE} && kalamake ${BUILD_DEBUG}
+kalamake ${BUILD_RELEASE} || exit 1
+kalamake ${BUILD_DEBUG} || exit 1
 
 #
 # Cleanup
