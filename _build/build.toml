@@ -1,0 +1,38 @@
+[project]
+name="miniaudio"
+version="0-11-25"
+kmake="project.kmake"
+
+[references]
+ma_source="miniaudio.c"
+ma_header="miniaudio.h"
+
+[windows-sync]
+ma_copy_source=[ "../${ma_source}", "src/${ma_source}", "copy" ]
+ma_copy_header=[ "../${ma_header}", "include/${ma_header}", "copy" ]
+
+[windows-post-build-sync]
+ma_bin_rel=[ "build/temp/release-windows/miniaudio.lib", "build/${version}/miniaudio.lib", "copy" ]
+ma_bin_deb=[ "build/temp/debug-windows/miniaudiod.lib", "build/${version}/miniaudiod.lib", "copy" ]
+ma_include=[ "include", "build/${version}/include", "copy" ]
+ma_license=[ "../LICENSE", "build/${version}/LICENSE", "copy" ]
+
+[windows-gnu-sync]
+ma_copy_source=[ "../${ma_source}", "src/${ma_source}", "copy" ]
+ma_copy_header=[ "../${ma_header}", "include/${ma_header}", "copy" ]
+
+[windows-gnu-post-build-sync]
+ma_bin_rel=[ "build/temp/release-windows-gnu/miniaudio-gnu.lib", "build/${version}/miniaudio-gnu.lib", "copy" ]
+ma_bin_deb=[ "build/temp/debug-windows-gnu/miniaudio-gnud.lib", "build/${version}/miniaudio-gnud.lib", "copy" ]
+ma_include=[ "include", "build/${version}/include", "copy" ]
+ma_license=[ "../LICENSE", "build/${version}/LICENSE", "copy" ]
+
+[linux-sync]
+ma_copy_source=[ "../${ma_source}", "src/${ma_source}", "copy" ]
+ma_copy_header=[ "../${ma_header}", "include/${ma_header}", "copy" ]
+
+[linux-post-build-sync]
+ma_bin_rel=[ "build/temp/release-linux/libminiaudio.a", "build/${version}/libminiaudio.a", "copy" ]
+ma_bin_deb=[ "build/temp/debug-linux/libminiaudiod.a", "build/${version}/libminiaudiod.a", "copy" ]
+ma_include=[ "include", "build/${version}/include", "copy" ]
+ma_license=[ "../LICENSE", "build/${version}/LICENSE", "copy" ]
